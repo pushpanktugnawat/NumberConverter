@@ -1,4 +1,4 @@
-package in.push.audit.domain;
+package in.push.audit.domain.service;
 
 import in.push.adapter.inbound.dto.NumberToRomanResponseData;
 import in.push.audit.aspect.Audit;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class AuditServiceImpl {
 
     @Around("@annotation(audit)")
-    public Object addMetric(ProceedingJoinPoint pjp, Audit audit) throws Throwable {
+    public Object addAudit(ProceedingJoinPoint pjp, Audit audit) throws Throwable {
         ResponseEntity retVal = (ResponseEntity) pjp.proceed();
         String inputNumber = (String) pjp.getArgs()[0];
         NumberType type = (NumberType) pjp.getArgs()[1];
