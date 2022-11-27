@@ -2,6 +2,7 @@ package in.push.adapter.inbound;
 
 
 import in.push.adapter.inbound.dto.NumberToRomanResponseData;
+import in.push.audit.Audit;
 import in.push.domain.enums.NumberType;
 import in.push.port.inbound.NumberToRomanService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class NumberToRomanController {
     private final NumberToRomanService numberToRomanService;
 
     @GetMapping("/api/number-to-roman")
+    @Audit
     public ResponseEntity<NumberToRomanResponseData> numberToRoman(@NonNull @RequestParam(value = "number") String number,
         @NonNull @RequestParam(value = "type")NumberType numberType){
         String romanNumber = numberToRomanService.convertNumberToRoman(number, numberType);
